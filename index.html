@@ -8,5 +8,24 @@
 <body>
     <h1>Receiving Website</h1>
     <p>This website receives messages from the main website.</p>
+
+    <script>
+        const express = require('express');
+        const bodyParser = require('body-parser');
+        const app = express();
+        const port = 3000;
+
+        app.use(bodyParser.json());
+
+        app.post('/receive-message', (req, res) => {
+            const message = req.body.message;
+            console.log('Received message:', message);
+            res.sendStatus(200); // Respond with success status
+        });
+
+        app.listen(port, () => {
+            console.log(`Receiving website listening at http://localhost:${port}`);
+        });
+    </script>
 </body>
 </html>
